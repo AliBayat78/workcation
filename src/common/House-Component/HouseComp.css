@@ -1,0 +1,57 @@
+.House-Components {
+  margin: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Graphik;
+}
+
+.House-Components img {
+  width: 24rem;
+  height: 21rem;
+  border-radius: 7px;
+  -webkit-box-shadow: -1px 12px 16px -1px rgba(0, 0, 0, 0.35);
+  box-shadow: -1px 12px 16px -1px rgba(0, 0, 0, 0.35);
+}
+
+.House-Intro {
+  background-color: #fff;
+  width: 21rem;
+  height: 10rem;
+  margin-top: -4.5rem;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  -webkit-box-shadow: -1px 12px 16px -1px rgba(0, 0, 0, 0.35);
+  box-shadow: -1px 12px 16px -1px rgba(0, 0, 0, 0.35);
+}
+
+.bed-bath {
+  font-size: 12px;
+  color: #718096;
+  text-transform: uppercase;
+  margin: 1rem 0 0 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.House-Intro h3 {
+  margin-left: 1rem;
+}
+
+.houseComp-price {
+  size: 14px;
+  color: #1a202c;
+  margin: 0 0 0 1rem;
+}
+
+.houseComp-price span {
+  color: #718096;
+  font-size: 12px;
+}
+
+.reviews {
+  margin: 0 0 1rem 1rem;
+}

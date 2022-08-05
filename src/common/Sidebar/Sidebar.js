@@ -3,7 +3,8 @@ import { MdHouseboat } from 'react-icons/md'
 import { IconContext } from 'react-icons'
 import { GiPalmTree } from 'react-icons/gi'
 import Select from 'react-select'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useHouse, useHouseActions } from '../../context/HouseProvider'
 
 const options = [
   { value: 1, label: '1' },
@@ -13,6 +14,7 @@ const options = [
 ]
 
 const priceOptions = [
+  { value: '', label: 'All' },
   { value: 2000, label: 'Up to $2.000 /wk' },
   { value: 4000, label: 'Up to $4.000 /wk' },
   { value: 5000, label: 'Up to $5.000 /wk' },
@@ -52,10 +54,20 @@ const customStyles = {
 }
 
 const Sidebar = () => {
+  const products = useHouse()
+  const dispatch = useHouseActions()
+
   const [property, setProperty] = useState('')
+  const [sortPrice, setSortPrice] = useState('')
 
   const propertyHandler = (e) => {
     setProperty(e.target.value)
+  }
+
+  const sortPriceHandler = (selectedOption) => {
+    dispatch({ type: 'sortPrice', selectedOption })
+
+    setSortPrice(selectedOption)
   }
 
   return (
@@ -79,25 +91,32 @@ const Sidebar = () => {
           <div className="bedroom">
             <p>Bedrooms</p>
             <Select
-              defaultValue={options[1]}
               styles={customStyles}
               className="select"
               options={options}
+              isSearchable={false}
             />
           </div>
           <div className="bathroom">
             <p>Bathrooms</p>
-            <Select styles={customStyles} className="select" options={options} />
+            <Select
+              isSearchable={false}
+              styles={customStyles}
+              className="select"
+              options={options}
+            />
           </div>
         </div>
 
         <div className="price">
           <p>Price Range</p>
           <Select
-            defaultValue={priceOptions[1]}
+            isSearchable={false}
             styles={customStyles}
             className="price-select"
             options={priceOptions}
+            value={sortPrice}
+            onChange={sortPriceHandler}
           />
         </div>
 
