@@ -1,9 +1,7 @@
-import { useEffect } from 'react'
 import HouseComp from '../common/House-Component/HouseComp'
 import Navbar from '../common/Navbar/Navbar'
 import Sidebar from '../common/Sidebar/Sidebar'
 import { useHouse } from '../context/HouseProvider'
-import { dataProducts } from '../db/data'
 
 const HomePage = () => {
   const products = useHouse()
@@ -30,6 +28,7 @@ const HomePage = () => {
                     price={product.price}
                     features={product.features}
                     plus={product.plus}
+                    type={product.type}
                   />
                 )
               }
@@ -50,6 +49,7 @@ const HomePage = () => {
                     price={product.price}
                     features={product.features}
                     plus={product.plus}
+                    type={product.type}
                   />
                 )
               }

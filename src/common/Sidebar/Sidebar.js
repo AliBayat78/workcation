@@ -60,14 +60,26 @@ const Sidebar = () => {
   const [property, setProperty] = useState('')
   const [sortPrice, setSortPrice] = useState('')
 
+  useEffect(() => {
+    setSortPrice(priceOptions[0])
+  }, [])
+
   const propertyHandler = (e) => {
+    dispatch({ type: 'sortPrice', selectedOption: sortPrice })
+    dispatch({ type: 'sortProperty', selectedOption: e.target.value })
     setProperty(e.target.value)
+    if (e.target.value === '') {
+      return dispatch({ type: 'sortPrice', selectedOption: sortPrice })
+    }
   }
 
   const sortPriceHandler = (selectedOption) => {
     dispatch({ type: 'sortPrice', selectedOption })
-
+    dispatch({ type: 'sortProperty', selectedOption: property })
     setSortPrice(selectedOption)
+    if (selectedOption.value === '') {
+      return dispatch({ type: 'sortProperty', selectedOption: property })
+    }
   }
 
   return (
@@ -124,6 +136,16 @@ const Sidebar = () => {
 
         <div className="property">
           <p>Property Type</p>
+          <div>
+            <input
+              onChange={(e) => propertyHandler(e)}
+              type="radio"
+              id="All"
+              name="property"
+              value=""
+            />
+            <label htmlFor="All"> All</label>
+          </div>
           <div>
             <input
               onChange={(e) => propertyHandler(e)}

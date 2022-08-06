@@ -4,6 +4,7 @@ const houseReducer = (state, action) => {
   switch (action.type) {
     case 'sortPrice': {
       const value = action.selectedOption.value
+      const products = [...state]
       if (value === '') {
         return dataProducts
       }
@@ -15,6 +16,21 @@ const houseReducer = (state, action) => {
         return dataProducts.filter((p) => p.price <= 5000)
       } else {
         return dataProducts.filter((p) => p.price <= 6000)
+      }
+    }
+    case 'sortProperty': {
+      const value = action.selectedOption
+      const products = [...state]
+      if (value === '') {
+        return dataProducts
+      } else if (value === 'House') {
+        return products.filter((p) => p.type === 'House')
+      } else if (value === 'Apartment') {
+        return products.filter((p) => p.type === 'Apartment')
+      } else if (value === 'Loft') {
+        return products.filter((p) => p.type === 'Loft')
+      } else {
+        return products.filter((p) => p.type === 'Townhouse')
       }
     }
     default:

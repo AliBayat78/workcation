@@ -52,7 +52,7 @@ export const dataProducts = [
     city: 'Phoenix',
     type: 'Townhouse',
     title: 'Modern home in city center',
-    price: 6090,
+    price: 5090,
     features: '4 Beds - 2 Baths',
     plus: true,
     amenities: 'Balcony Pool Pet Friendly',

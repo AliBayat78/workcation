@@ -1,7 +1,7 @@
 import './HouseComp.css'
 import Plus from '../Plus/Plus'
 
-const HouseComp = ({ image, title, price, features, plus }) => {
+const HouseComp = ({ image, title, price, features, plus, type }) => {
   return (
     <div className="House-Components">
       <img src={image} />
@@ -11,6 +11,7 @@ const HouseComp = ({ image, title, price, features, plus }) => {
           {features}
         </span>
         <h3>{title}</h3>
+        <p>{type}</p>
         <p className="houseComp-price">
           ${price} <span>/wk</span>
         </p>
