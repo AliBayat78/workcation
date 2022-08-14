@@ -4,7 +4,6 @@ const houseReducer = (state, action) => {
   switch (action.type) {
     case 'sortPrice': {
       const value = action.selectedOption.value
-      const products = [...state]
       if (value === '') {
         return dataProducts
       }
@@ -32,6 +31,44 @@ const houseReducer = (state, action) => {
       } else {
         return products.filter((p) => p.type === 'Townhouse')
       }
+    }
+    case 'sortAmenity': {
+      const amenities = action.selectedOption
+      const products = [...state]
+
+      const checked = amenities.map((item) => {
+        if (item.checked === true) {
+          return item.id
+        } else {
+          return ''
+        }
+      })
+
+      const amenityState = products.map((item) => {
+        return item.amenities
+      })
+
+      console.log(checked)
+      console.log(amenityState)
+
+      const updated = amenityState.filter((item) => {
+        return item.includes(
+          checked.map((item) => {
+            return item
+          }),
+        )
+      })
+
+      console.log(updated)
+
+      // const index = products.findIndex((item) => {
+      //   return item.id === action.selectedOption
+      // })
+
+      // const selectedProduct = products[index]
+      // products.map((item) => {
+
+      // })
     }
     default:
       return state

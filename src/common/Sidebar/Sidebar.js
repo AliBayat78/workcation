@@ -21,6 +21,7 @@ const priceOptions = [
   { value: 6000, label: 'Up to $6.000 /wk' },
 ]
 
+// Styles for Select Component
 const customStyles = {
   option: (provided) => ({
     ...provided,
@@ -59,11 +60,42 @@ const Sidebar = () => {
 
   const [property, setProperty] = useState('')
   const [sortPrice, setSortPrice] = useState('')
+  // const [amenities, setAmenities] = useState([
+  //   { id: 'Balcony', checked: false },
+  //   { id: 'AirConditioning', checked: false },
+  //   { id: 'Pool', checked: false },
+  //   { id: 'Beach', checked: false },
+  //   { id: 'PetFriendly', checked: false },
+  //   { id: 'KidFriendly', checked: false },
+  //   { id: 'Parking', checked: false },
+  // ])
+  const [checked, setChecked] = useState([
+    { id: 'Balcony', checked: false },
+    { id: 'AirConditioning', checked: false },
+    { id: 'Pool', checked: false },
+    { id: 'Beach', checked: false },
+    { id: 'PetFriendly', checked: false },
+    { id: 'KidFriendly', checked: false },
+    { id: 'Parking', checked: false },
+  ])
+  const [amenities, setAmenities] = useState('')
 
+  // Mounting DOM with Price Sort on All
   useEffect(() => {
     setSortPrice(priceOptions[0])
   }, [])
 
+  // Sorting Based on Price
+  const sortPriceHandler = (selectedOption) => {
+    dispatch({ type: 'sortPrice', selectedOption })
+    dispatch({ type: 'sortProperty', selectedOption: property })
+    setSortPrice(selectedOption)
+    if (selectedOption.value === '') {
+      return dispatch({ type: 'sortProperty', selectedOption: property })
+    }
+  }
+
+  // Sorting Based on Property Type
   const propertyHandler = (e) => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
     dispatch({ type: 'sortProperty', selectedOption: e.target.value })
@@ -73,13 +105,22 @@ const Sidebar = () => {
     }
   }
 
-  const sortPriceHandler = (selectedOption) => {
-    dispatch({ type: 'sortPrice', selectedOption })
-    dispatch({ type: 'sortProperty', selectedOption: property })
-    setSortPrice(selectedOption)
-    if (selectedOption.value === '') {
-      return dispatch({ type: 'sortProperty', selectedOption: property })
+  // Sorting Based on Amenities
+  const amenitiesHandler = (e) => {
+    const index = checked.findIndex((item) => {
+      return item.id === e.target.value
+    })
+    const products = [...checked]
+    const selectedProduct = products[index]
+    selectedProduct.checked = !selectedProduct.checked
+
+    if (selectedProduct.checked) {
+      return setAmenities((prevState) => prevState + e.target.value + ' ')
+    } else {
+      let updatedAmenities = amenities.replace(selectedProduct.id, '')
+      return setAmenities(updatedAmenities)
     }
+    // dispatch({ type: 'sortAmenity', selectedOption: amenities })
   }
 
   return (
@@ -194,37 +235,72 @@ const Sidebar = () => {
           <p>Amenities</p>
           <form action="">
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                onChange={(e) => amenitiesHandler(e)}
+                value="Balcony"
+                type="checkbox"
+                name="checkbox"
+              />
               Balcony
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                onChange={(e) => amenitiesHandler(e)}
+                value="AirConditioning"
+                type="checkbox"
+                name="checkbox"
+              />
               Air Conditioning
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                value="Pool"
+                onChange={(e) => amenitiesHandler(e)}
+                type="checkbox"
+                name="checkbox"
+              />
               Pool
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                value="Beach"
+                onChange={(e) => amenitiesHandler(e)}
+                type="checkbox"
+                name="checkbox"
+              />
               Beach
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                value="PetFriendly"
+                onChange={(e) => amenitiesHandler(e)}
+                type="checkbox"
+                name="checkbox"
+              />
               Pet friendly
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                value="KidFriendly"
+                onChange={(e) => amenitiesHandler(e)}
+                type="checkbox"
+                name="checkbox"
+              />
               Kid friendly
             </label>
 
             <label className="form-control">
-              <input type="checkbox" name="checkbox" />
+              <input
+                value="Parking"
+                onChange={(e) => amenitiesHandler(e)}
+                type="checkbox"
+                name="checkbox"
+              />
               Parking
             </label>
           </form>
