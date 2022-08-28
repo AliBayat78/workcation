@@ -89,16 +89,23 @@ const Sidebar = () => {
   const sortPriceHandler = (selectedOption) => {
     dispatch({ type: 'sortPrice', selectedOption })
     dispatch({ type: 'sortProperty', selectedOption: property })
+
     setSortPrice(selectedOption)
     if (selectedOption.value === '') {
       return dispatch({ type: 'sortProperty', selectedOption: property })
     }
   }
 
+  useEffect(() => {
+    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+  }, [sortPrice])
+
   // Sorting Based on Property Type
   const propertyHandler = (e) => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
+    dispatch({ type: 'sortAmenity', selectedOption: amenities })
     dispatch({ type: 'sortProperty', selectedOption: e.target.value })
+
     setProperty(e.target.value)
     if (e.target.value === '') {
       return dispatch({ type: 'sortPrice', selectedOption: sortPrice })
@@ -113,15 +120,21 @@ const Sidebar = () => {
     const products = [...checked]
     const selectedProduct = products[index]
     selectedProduct.checked = !selectedProduct.checked
+    setChecked(products)
 
     if (selectedProduct.checked) {
       return setAmenities((prevState) => prevState + e.target.value + ' ')
     } else {
-      let updatedAmenities = amenities.replace(selectedProduct.id, '')
-      return setAmenities(updatedAmenities)
+      let updatedAmenities = amenities.replace(selectedProduct.id, '').trim()
+      return setAmenities(updatedAmenities + ' ')
     }
-    // dispatch({ type: 'sortAmenity', selectedOption: amenities })
   }
+
+  useEffect(() => {
+    dispatch({ type: 'sortPrice', selectedOption: sortPrice })
+    dispatch({ type: 'sortProperty', selectedOption: property })
+    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+  }, [amenities])
 
   return (
     <div className="sidebar">

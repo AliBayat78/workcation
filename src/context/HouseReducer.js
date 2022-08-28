@@ -6,8 +6,7 @@ const houseReducer = (state, action) => {
       const value = action.selectedOption.value
       if (value === '') {
         return dataProducts
-      }
-      if (value === 2000) {
+      } else if (value === 2000) {
         return dataProducts.filter((p) => p.price <= 2000)
       } else if (value === 4000) {
         return dataProducts.filter((p) => p.price <= 4000)
@@ -33,42 +32,17 @@ const houseReducer = (state, action) => {
       }
     }
     case 'sortAmenity': {
-      const amenities = action.selectedOption
+      const amenities = action.selectedOption.split(' ')
       const products = [...state]
 
-      const checked = amenities.map((item) => {
-        if (item.checked === true) {
-          return item.id
-        } else {
-          return ''
-        }
-      })
-
-      const amenityState = products.map((item) => {
-        return item.amenities
-      })
-
-      console.log(checked)
-      console.log(amenityState)
-
-      const updated = amenityState.filter((item) => {
-        return item.includes(
-          checked.map((item) => {
-            return item
-          }),
-        )
-      })
-
-      console.log(updated)
-
-      // const index = products.findIndex((item) => {
-      //   return item.id === action.selectedOption
-      // })
-
-      // const selectedProduct = products[index]
-      // products.map((item) => {
-
-      // })
+      let newAmenities = new Set(amenities)
+      if (newAmenities.length === 1 && newAmenities.includes('')) {
+        return dataProducts
+      } else {
+        return products.filter((p) => {
+          return amenities.every((element) => p.amenities.indexOf(element) > -1)
+        })
+      }
     }
     default:
       return state

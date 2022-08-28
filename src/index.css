@@ -5,6 +5,10 @@
   box-sizing: border-box;
 }
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: Graphik;
   src: url(./fonts/Graphik-Font-Family/GraphikLightItalic.otf);
