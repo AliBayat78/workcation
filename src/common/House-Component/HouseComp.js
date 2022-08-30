@@ -11,7 +11,7 @@ const HouseComp = ({ image, title, price, features, plus, type }) => {
           {features}
         </span>
         <h3>{title}</h3>
-        <p>{type}</p>
+        <h3 className="text-gray-800 font-bold">{type}</h3>
         <p className="houseComp-price">
           ${price} <span>/wk</span>
         </p>

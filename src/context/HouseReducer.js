@@ -2,6 +2,40 @@ import { dataProducts } from '../db/data'
 
 const houseReducer = (state, action) => {
   switch (action.type) {
+    case 'sortBed': {
+      const value = action.selectedOption.value
+      const products = [...state]
+
+      if (value === 1) {
+        return products.filter((p) => p.features.includes('1 Bed'))
+      } else if (value === 2) {
+        return products.filter((p) => p.features.includes('2 Bed'))
+      } else if (value === 3) {
+        return products.filter((p) => p.features.includes('3 Bed'))
+      } else if (value === 4) {
+        return products.filter((p) => p.features.includes('4 Bed'))
+      } else {
+        return products
+      }
+    }
+
+    case 'sortBath': {
+      const value = action.selectedOption.value
+      const products = [...state]
+
+      if (value === 1) {
+        return products.filter((p) => p.features.includes('1 Bath'))
+      } else if (value === 2) {
+        return products.filter((p) => p.features.includes('2 Bath'))
+      } else if (value === 3) {
+        return products.filter((p) => p.features.includes('3 Bath'))
+      } else if (value === 4) {
+        return products.filter((p) => p.features.includes('4 Bath'))
+      } else {
+        return products
+      }
+    }
+
     case 'sortPrice': {
       const value = action.selectedOption.value
       if (value === '') {
@@ -42,6 +76,20 @@ const houseReducer = (state, action) => {
         return products.filter((p) => {
           return amenities.every((element) => p.amenities.indexOf(element) > -1)
         })
+      }
+    }
+
+    case 'search': {
+      const value = action.selectedOption
+      const products = [...state]
+
+      if (value === '') {
+        return products
+      } else {
+        const filteredProducts = products.filter((p) => {
+          return p.title.toLowerCase().includes(value.toLowerCase())
+        })
+        return filteredProducts
       }
     }
     default:

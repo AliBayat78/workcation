@@ -3,13 +3,18 @@ import Avatar2 from '../../icons/avatar2.jpg'
 import { BsSearch } from 'react-icons/bs'
 import { IconContext } from 'react-icons'
 import { useRef, useState } from 'react'
+import { useHouse, useHouseActions } from '../../context/HouseProvider'
 
 const Navbar = () => {
+  const products = useHouse()
+  const dispatch = useHouseActions()
+
   const [inputText, setInputText] = useState('')
 
   const inputRef = useRef()
 
   const changeHandler = (e) => {
+    dispatch({ type: 'search', selectedOption: e.target.value })
     setInputText(e.target.value)
   }
 

@@ -4,9 +4,13 @@ import { IconContext } from 'react-icons'
 import { GiPalmTree } from 'react-icons/gi'
 import Select from 'react-select'
 import { useEffect, useState } from 'react'
-import { useHouse, useHouseActions } from '../../context/HouseProvider'
+import { useHouseActions } from '../../context/HouseProvider'
+import Navbar from '../Navbar/Navbar'
+import MainComp from '../Main/Main'
 
+// Bed and Bath options
 const options = [
+  { value: '', label: 'All' },
   { value: 1, label: '1' },
   { value: 2, label: '2' },
   { value: 3, label: '3' },
@@ -34,12 +38,12 @@ const customStyles = {
   control: (base, state) => ({
     ...base,
     background: '#4A5568',
-    // Overwrittes the different states of border
+    // Over writes the different states of border
     borderColor: state.isFocused ? '#667EEA' : '#a0aec0',
     // Removes weird border around container
     boxShadow: state.isFocused ? null : null,
     '&:hover': {
-      // Overwrittes the different states of border
+      // Over writes the different states of border
       borderColor: state.isFocused ? 'cyan' : '#667EEA',
     },
     fontFamily: 'Graphik',
@@ -54,21 +58,14 @@ const customStyles = {
   }),
 }
 
-const Sidebar = () => {
-  const products = useHouse()
+const Sidebar = ({ children }) => {
   const dispatch = useHouseActions()
 
-  const [property, setProperty] = useState('')
+  const [sortBed, setSortBed] = useState('')
+  const [sortBath, setSortBath] = useState('')
   const [sortPrice, setSortPrice] = useState('')
-  // const [amenities, setAmenities] = useState([
-  //   { id: 'Balcony', checked: false },
-  //   { id: 'AirConditioning', checked: false },
-  //   { id: 'Pool', checked: false },
-  //   { id: 'Beach', checked: false },
-  //   { id: 'PetFriendly', checked: false },
-  //   { id: 'KidFriendly', checked: false },
-  //   { id: 'Parking', checked: false },
-  // ])
+  const [property, setProperty] = useState('')
+
   const [checked, setChecked] = useState([
     { id: 'Balcony', checked: false },
     { id: 'AirConditioning', checked: false },
@@ -80,25 +77,26 @@ const Sidebar = () => {
   ])
   const [amenities, setAmenities] = useState('')
 
-  // Mounting DOM with Price Sort on All
-  useEffect(() => {
-    setSortPrice(priceOptions[0])
-  }, [])
+  const sortBedHandler = (selectedOption) => {
+    dispatch({ type: 'sortBed', selectedOption })
+    setSortBed({ ...selectedOption, isDisabled: true })
+  }
+
+  const sortBathHandler = (selectedOption) => {
+    dispatch({ type: 'sortBath', selectedOption })
+    setSortBath({ ...selectedOption, isDisabled: true })
+  }
 
   // Sorting Based on Price
   const sortPriceHandler = (selectedOption) => {
-    dispatch({ type: 'sortPrice', selectedOption })
     dispatch({ type: 'sortProperty', selectedOption: property })
+    dispatch({ type: 'sortPrice', selectedOption })
 
-    setSortPrice(selectedOption)
+    setSortPrice({ ...selectedOption, isDisabled: true })
     if (selectedOption.value === '') {
       return dispatch({ type: 'sortProperty', selectedOption: property })
     }
   }
-
-  useEffect(() => {
-    dispatch({ type: 'sortAmenity', selectedOption: amenities })
-  }, [sortPrice])
 
   // Sorting Based on Property Type
   const propertyHandler = (e) => {
@@ -130,200 +128,228 @@ const Sidebar = () => {
     }
   }
 
+  // Mounting DOM -> set Price Sort on All
+  useEffect(() => {
+    setSortPrice(priceOptions[0])
+  }, [])
+
+  // changing price state => check the amenity option
+  useEffect(() => {
+    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+    dispatch({ type: 'sortBed', selectedOption: sortBed })
+    dispatch({ type: 'sortBath', selectedOption: sortBath })
+  }, [sortPrice])
+
+  // changing amenity state => check and perform other filters
   useEffect(() => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
     dispatch({ type: 'sortProperty', selectedOption: property })
     dispatch({ type: 'sortAmenity', selectedOption: amenities })
-  }, [amenities])
+    dispatch({ type: 'sortBed', selectedOption: sortBed })
+    dispatch({ type: 'sortBath', selectedOption: sortBath })
+  }, [amenities, sortBed, sortBath])
 
   return (
-    <div className="sidebar">
-      <div className="logo">
-        <IconContext.Provider value={{ className: 'workcation' }}>
-          <div className="workcation">
-            <MdHouseboat />
+    <>
+      <div className="sidebar">
+        <div className="logo">
+          <IconContext.Provider value={{ className: 'workcation' }}>
+            <div className="workcation">
+              <MdHouseboat />
+            </div>
+          </IconContext.Provider>
+          <IconContext.Provider value={{ className: 'palm-tree' }}>
+            <div className="palm-tree">
+              <GiPalmTree />
+            </div>
+          </IconContext.Provider>
+          <h2>Work </h2>
+          <h2 style={{ color: '#667EEA' }}>cation</h2>
+        </div>
+        <div className="sidebar-content">
+          <div className="bedroom-bathroom">
+            <div className="bedroom">
+              <p>Bedrooms</p>
+              <Select
+                styles={customStyles}
+                className="select"
+                options={options}
+                isSearchable={false}
+                value={sortBed}
+                onChange={sortBedHandler}
+                isOptionDisabled={(option) => option.isDisabled}
+              />
+            </div>
+            <div className="bathroom">
+              <p>Bathrooms</p>
+              <Select
+                isSearchable={false}
+                styles={customStyles}
+                className="select"
+                options={options}
+                value={sortBath}
+                onChange={sortBathHandler}
+                isOptionDisabled={(option) => option.isDisabled}
+              />
+            </div>
           </div>
-        </IconContext.Provider>
-        <IconContext.Provider value={{ className: 'palm-tree' }}>
-          <div className="palm-tree">
-            <GiPalmTree />
-          </div>
-        </IconContext.Provider>
-        <h2>Work </h2>
-        <h2 style={{ color: '#667EEA' }}>cation</h2>
-      </div>
-      <div className="sidebar-content">
-        <div className="bedroom-bathroom">
-          <div className="bedroom">
-            <p>Bedrooms</p>
+
+          <div className="price">
+            <p>Price Range</p>
             <Select
-              styles={customStyles}
-              className="select"
-              options={options}
-              isSearchable={false}
-            />
-          </div>
-          <div className="bathroom">
-            <p>Bathrooms</p>
-            <Select
               isSearchable={false}
               styles={customStyles}
-              className="select"
-              options={options}
+              className="price-select"
+              options={priceOptions}
+              value={sortPrice}
+              onChange={sortPriceHandler}
+              isOptionDisabled={(option) => option.isDisabled}
             />
           </div>
-        </div>
 
-        <div className="price">
-          <p>Price Range</p>
-          <Select
-            isSearchable={false}
-            styles={customStyles}
-            className="price-select"
-            options={priceOptions}
-            value={sortPrice}
-            onChange={sortPriceHandler}
-          />
-        </div>
+          <div className="hr"></div>
 
-        <div className="hr"></div>
-
-        <div className="property">
-          <p>Property Type</p>
-          <div>
-            <input
-              onChange={(e) => propertyHandler(e)}
-              type="radio"
-              id="All"
-              name="property"
-              value=""
-            />
-            <label htmlFor="All"> All</label>
+          <div className="property">
+            <p>Property Type</p>
+            <div>
+              <input
+                onChange={(e) => propertyHandler(e)}
+                type="radio"
+                id="All"
+                name="property"
+                value=""
+              />
+              <label htmlFor="All"> All</label>
+            </div>
+            <div>
+              <input
+                onChange={(e) => propertyHandler(e)}
+                type="radio"
+                id="House"
+                name="property"
+                value="House"
+              />
+              <label htmlFor="House"> House</label>
+            </div>
+            <div>
+              <input
+                onChange={(e) => propertyHandler(e)}
+                type="radio"
+                id="vehicle2"
+                name="property"
+                value="Apartment"
+              />
+              <label htmlFor="vehicle2"> Apartment</label>
+            </div>
+            <div>
+              <input
+                onChange={(e) => propertyHandler(e)}
+                type="radio"
+                id="vehicle3"
+                name="property"
+                value="Loft"
+              />
+              <label htmlFor="vehicle3"> Loft</label>
+            </div>
+            <div>
+              <input
+                onChange={(e) => propertyHandler(e)}
+                type="radio"
+                id="vehicle4"
+                name="property"
+                value="TownHouse"
+              />
+              <label htmlFor="vehicle4"> TownHouse</label>
+            </div>
           </div>
-          <div>
-            <input
-              onChange={(e) => propertyHandler(e)}
-              type="radio"
-              id="House"
-              name="property"
-              value="House"
-            />
-            <label htmlFor="House"> House</label>
+
+          <div className="hr"></div>
+
+          <div className="amenities">
+            <p>Amenities</p>
+            <form action="">
+              <label className="form-control">
+                <input
+                  onChange={(e) => amenitiesHandler(e)}
+                  value="Balcony"
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Balcony
+              </label>
+
+              <label className="form-control">
+                <input
+                  onChange={(e) => amenitiesHandler(e)}
+                  value="AirConditioning"
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Air Conditioning
+              </label>
+
+              <label className="form-control">
+                <input
+                  value="Pool"
+                  onChange={(e) => amenitiesHandler(e)}
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Pool
+              </label>
+
+              <label className="form-control">
+                <input
+                  value="Beach"
+                  onChange={(e) => amenitiesHandler(e)}
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Beach
+              </label>
+
+              <label className="form-control">
+                <input
+                  value="PetFriendly"
+                  onChange={(e) => amenitiesHandler(e)}
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Pet friendly
+              </label>
+
+              <label className="form-control">
+                <input
+                  value="KidFriendly"
+                  onChange={(e) => amenitiesHandler(e)}
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Kid friendly
+              </label>
+
+              <label className="form-control">
+                <input
+                  value="Parking"
+                  onChange={(e) => amenitiesHandler(e)}
+                  type="checkbox"
+                  name="checkbox"
+                />
+                Parking
+              </label>
+            </form>
           </div>
-          <div>
-            <input
-              onChange={(e) => propertyHandler(e)}
-              type="radio"
-              id="vehicle2"
-              name="property"
-              value="Apartment"
-            />
-            <label htmlFor="vehicle2"> Apartment</label>
+
+          <div className="update-result">
+            <button className="update-btn">Update Result</button>
           </div>
-          <div>
-            <input
-              onChange={(e) => propertyHandler(e)}
-              type="radio"
-              id="vehicle3"
-              name="property"
-              value="Loft"
-            />
-            <label htmlFor="vehicle3"> Loft</label>
-          </div>
-          <div>
-            <input
-              onChange={(e) => propertyHandler(e)}
-              type="radio"
-              id="vehicle4"
-              name="property"
-              value="TownHouse"
-            />
-            <label htmlFor="vehicle4"> TownHouse</label>
-          </div>
-        </div>
-
-        <div className="hr"></div>
-
-        <div className="amenities">
-          <p>Amenities</p>
-          <form action="">
-            <label className="form-control">
-              <input
-                onChange={(e) => amenitiesHandler(e)}
-                value="Balcony"
-                type="checkbox"
-                name="checkbox"
-              />
-              Balcony
-            </label>
-
-            <label className="form-control">
-              <input
-                onChange={(e) => amenitiesHandler(e)}
-                value="AirConditioning"
-                type="checkbox"
-                name="checkbox"
-              />
-              Air Conditioning
-            </label>
-
-            <label className="form-control">
-              <input
-                value="Pool"
-                onChange={(e) => amenitiesHandler(e)}
-                type="checkbox"
-                name="checkbox"
-              />
-              Pool
-            </label>
-
-            <label className="form-control">
-              <input
-                value="Beach"
-                onChange={(e) => amenitiesHandler(e)}
-                type="checkbox"
-                name="checkbox"
-              />
-              Beach
-            </label>
-
-            <label className="form-control">
-              <input
-                value="PetFriendly"
-                onChange={(e) => amenitiesHandler(e)}
-                type="checkbox"
-                name="checkbox"
-              />
-              Pet friendly
-            </label>
-
-            <label className="form-control">
-              <input
-                value="KidFriendly"
-                onChange={(e) => amenitiesHandler(e)}
-                type="checkbox"
-                name="checkbox"
-              />
-              Kid friendly
-            </label>
-
-            <label className="form-control">
-              <input
-                value="Parking"
-                onChange={(e) => amenitiesHandler(e)}
-                type="checkbox"
-                name="checkbox"
-              />
-              Parking
-            </label>
-          </form>
-        </div>
-
-        <div className="update-result">
-          <button className="update-btn">Update Result</button>
         </div>
       </div>
-    </div>
+      <main className="main">
+        <Navbar />
+        {children}
+      </main>
+    </>
   )
 }
 
