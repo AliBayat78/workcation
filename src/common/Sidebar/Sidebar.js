@@ -64,7 +64,7 @@ const Sidebar = ({ children }) => {
   const [sortBed, setSortBed] = useState('')
   const [sortBath, setSortBath] = useState('')
   const [sortPrice, setSortPrice] = useState('')
-  const [property, setProperty] = useState('')
+  const [sortProperty, setSortProperty] = useState('')
 
   const [checked, setChecked] = useState([
     { id: 'Balcony', checked: false },
@@ -75,7 +75,7 @@ const Sidebar = ({ children }) => {
     { id: 'KidFriendly', checked: false },
     { id: 'Parking', checked: false },
   ])
-  const [amenities, setAmenities] = useState('')
+  const [sortAmenities, setSortAmenities] = useState('')
 
   const sortBedHandler = (selectedOption) => {
     dispatch({ type: 'sortBed', selectedOption })
@@ -89,22 +89,22 @@ const Sidebar = ({ children }) => {
 
   // Sorting Based on Price
   const sortPriceHandler = (selectedOption) => {
-    dispatch({ type: 'sortProperty', selectedOption: property })
+    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
     dispatch({ type: 'sortPrice', selectedOption })
 
     setSortPrice({ ...selectedOption, isDisabled: true })
     if (selectedOption.value === '') {
-      return dispatch({ type: 'sortProperty', selectedOption: property })
+      return dispatch({ type: 'sortProperty', selectedOption: sortProperty })
     }
   }
 
   // Sorting Based on Property Type
   const propertyHandler = (e) => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
-    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+    dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
     dispatch({ type: 'sortProperty', selectedOption: e.target.value })
 
-    setProperty(e.target.value)
+    setSortProperty(e.target.value)
     if (e.target.value === '') {
       return dispatch({ type: 'sortPrice', selectedOption: sortPrice })
     }
@@ -121,10 +121,10 @@ const Sidebar = ({ children }) => {
     setChecked(products)
 
     if (selectedProduct.checked) {
-      return setAmenities((prevState) => prevState + e.target.value + ' ')
+      return setSortAmenities((prevState) => prevState + e.target.value + ' ')
     } else {
-      let updatedAmenities = amenities.replace(selectedProduct.id, '').trim()
-      return setAmenities(updatedAmenities + ' ')
+      let updatedAmenities = sortAmenities.replace(selectedProduct.id, '').trim()
+      return setSortAmenities(updatedAmenities + ' ')
     }
   }
 
@@ -135,19 +135,19 @@ const Sidebar = ({ children }) => {
 
   // changing price state => check the amenity option
   useEffect(() => {
-    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+    dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
     dispatch({ type: 'sortBed', selectedOption: sortBed })
     dispatch({ type: 'sortBath', selectedOption: sortBath })
-  }, [sortPrice])
+  }, [sortPrice, sortProperty])
 
   // changing amenity state => check and perform other filters
   useEffect(() => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
-    dispatch({ type: 'sortProperty', selectedOption: property })
-    dispatch({ type: 'sortAmenity', selectedOption: amenities })
+    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
+    dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
     dispatch({ type: 'sortBed', selectedOption: sortBed })
     dispatch({ type: 'sortBath', selectedOption: sortBath })
-  }, [amenities, sortBed, sortBath])
+  }, [sortAmenities, sortBed, sortBath])
 
   return (
     <>
@@ -346,7 +346,13 @@ const Sidebar = ({ children }) => {
         </div>
       </div>
       <main className="main">
-        <Navbar />
+        <Navbar
+          sortAmenities={sortAmenities}
+          sortProperty={sortProperty}
+          sortBath={sortBath}
+          sortBed={sortBed}
+          sortPrice={sortPrice}
+        />
         {children}
       </main>
     </>
