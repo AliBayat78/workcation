@@ -6,7 +6,6 @@ import Select from 'react-select'
 import { useEffect, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
 import Navbar from '../Navbar/Navbar'
-import MainComp from '../Main/Main'
 
 // Bed and Bath options
 const options = [

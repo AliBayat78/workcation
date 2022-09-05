@@ -24,6 +24,7 @@ const MainComp = () => {
                   features={product.features}
                   plus={product.plus}
                   type={product.type}
+                  stars={product.stars}
                 />
               )
             }

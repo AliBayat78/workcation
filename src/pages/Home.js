@@ -1,4 +1,3 @@
-import Navbar from '../common/Navbar/Navbar'
 import Sidebar from '../common/Sidebar/Sidebar'
 import MainComp from '../common/Main/Main'
 

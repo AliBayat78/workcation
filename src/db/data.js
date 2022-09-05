@@ -32,7 +32,7 @@ export const dataProducts = [
     features: '3 Beds - 3 Baths',
     plus: false,
     amenities: ['AirConditioning', ''],
-    stars: 4,
+    stars: 4.5,
     url: 'https://s6.uupload.ir/files/la-3_fa53.jpg',
   },
   {
@@ -56,7 +56,7 @@ export const dataProducts = [
     features: '4 Beds - 2 Baths',
     plus: true,
     amenities: ['Pool', 'Parking', ''],
-    stars: 3,
+    stars: 3.5,
     url: 'https://s6.uupload.ir/files/ph-2_m9dm.jpg',
   },
   {
@@ -68,7 +68,7 @@ export const dataProducts = [
     features: '4 Beds - 1 Baths',
     plus: false,
     amenities: ['Beach', 'Pool', 'KidFriendly', ''],
-    stars: 4,
+    stars: 4.5,
     url: 'https://s6.uupload.ir/files/ph-3_6gcj.jpg',
   },
 ]

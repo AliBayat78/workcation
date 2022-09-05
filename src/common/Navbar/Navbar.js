@@ -2,11 +2,10 @@ import './navbar.css'
 import Avatar2 from '../../icons/avatar2.jpg'
 import { BsSearch } from 'react-icons/bs'
 import { IconContext } from 'react-icons'
-import { useEffect, useRef, useState } from 'react'
-import { useHouse, useHouseActions } from '../../context/HouseProvider'
+import { useRef, useState } from 'react'
+import { useHouseActions } from '../../context/HouseProvider'
 
 const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) => {
-  const products = useHouse()
   const dispatch = useHouseActions()
 
   const [inputText, setInputText] = useState('')
