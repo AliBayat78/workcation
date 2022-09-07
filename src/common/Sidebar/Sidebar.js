@@ -150,7 +150,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <div className="sidebar">
+      <div className="hidden sidebar">
         <div className="logo">
           <IconContext.Provider value={{ className: 'workcation' }}>
             <div className="workcation">

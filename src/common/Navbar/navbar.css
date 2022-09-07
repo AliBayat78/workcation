@@ -17,13 +17,13 @@
 }
 
 .search-icon {
-  height: 1.8rem;
-  width: 1.8rem;
+  height: 1.7rem;
+  width: 1.7rem;
   padding: 4px;
   position: absolute;
   box-sizing: border-box;
-  top: 50%;
-  left: 2px;
+  top: 52%;
+  left: 4px;
   transform: translateY(-50%);
   color: #0d2b3e;
 }
