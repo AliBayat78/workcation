@@ -23,7 +23,7 @@ const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) =
   }
 
   return (
-    <div className="navbar">
+    <div className="hidden navbar">
       <div className="search-bar">
         {inputText ? null : (
           <IconContext.Provider value={{ className: 'search-icon' }}>
@@ -47,7 +47,7 @@ const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) =
           <li>Messages</li>
           <li>Support</li>
         </ul>
-        <img src={Avatar2} />
+        <img alt="" src={Avatar2} />
       </div>
     </div>
   )

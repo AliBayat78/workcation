@@ -1,49 +1,4 @@
 @media (min-width: 768px) {
-  .sidebar {
-    width: 18%;
-    height: 100vh;
-    position: relative;
-    left: 0%;
-    right: 76.88%;
-    top: 0%;
-    background: #2d3748;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar .logo {
-    width: 100%;
-    height: 3.9rem;
-    color: #fff;
-    background: #1a202c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .logo h2 {
-    font-family: 'Gilroy';
-    font-size: 24px;
-    font-weight: 900;
-  }
-
-  .workcation {
-    width: 4rem;
-    height: 4rem;
-    color: #667eea;
-  }
-
-  .palm-tree {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-
-  .bedroom-bathroom {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-
   .bedroom,
   .bathroom {
     display: flex;

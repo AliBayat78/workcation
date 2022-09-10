@@ -150,23 +150,23 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <div className="hidden sidebar">
-        <div className="logo">
-          <IconContext.Provider value={{ className: 'workcation' }}>
-            <div className="workcation">
+      <div className="hidden md:flex md:flex-col md:w-1/3 md:h-full 2xl:w-1/5 md:bg-lightGray">
+        <div className="md:flex md:justify-center md:items-center md:w-full md:h-16 md:text-white md:bg-darkGray logo">
+          <IconContext.Provider value={{ className: 'md:text-purple  md:w-16 md:h-16' }}>
+            <div>
               <MdHouseboat />
             </div>
           </IconContext.Provider>
-          <IconContext.Provider value={{ className: 'palm-tree' }}>
-            <div className="palm-tree">
+          <IconContext.Provider value={{ className: 'md:w-8 md:h-8' }}>
+            <div>
               <GiPalmTree />
             </div>
           </IconContext.Provider>
-          <h2>Work </h2>
-          <h2 style={{ color: '#667EEA' }}>cation</h2>
+          <h2 className="md:font-graphik md:font-black md:text-2xl">Work </h2>
+          <h2 className="md:font-graphik md:text-2xl md:text-purple">cation</h2>
         </div>
-        <div className="sidebar-content">
-          <div className="bedroom-bathroom">
+        <div>
+          <div className="md:flex md:flex-row md:justify-around">
             <div className="bedroom">
               <p>Bedrooms</p>
               <Select

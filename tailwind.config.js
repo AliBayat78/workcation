@@ -3,6 +3,21 @@ module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
     extend: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      white: '#ffffff',
+      silver: '#718096',
+      lightGray: '#2d3748',
+      darkGray: '#1a202c',
+      purple: '#667eea',
+    },
+    fontFamily: {
+      sans: ['ui-sans-serif', 'system-ui'],
+      serif: ['ui-serif', 'Georgia'],
+      mono: ['ui-monospace', 'SFMono-Regular'],
+      graphik: ['Graphik'],
+    },
   },
   plugins: [],
 }
