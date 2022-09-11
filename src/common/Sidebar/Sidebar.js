@@ -151,7 +151,7 @@ const Sidebar = ({ children }) => {
   return (
     <>
       <div className="hidden md:flex md:flex-col md:w-1/3 md:h-full 2xl:w-1/5 md:bg-lightGray">
-        <div className="md:flex md:justify-center md:items-center md:w-full md:h-16 md:text-white md:bg-darkGray logo">
+        <div className="md:flex md:justify-center md:items-center md:w-full md:h-16 md:text-white md:bg-darkGray">
           <IconContext.Provider value={{ className: 'md:text-purple  md:w-16 md:h-16' }}>
             <div>
               <MdHouseboat />
@@ -167,11 +167,11 @@ const Sidebar = ({ children }) => {
         </div>
         <div>
           <div className="md:flex md:flex-row md:justify-around">
-            <div className="bedroom">
-              <p>Bedrooms</p>
+            <div className="md:flex md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
+              <p className="md:text-lightSilver">Bedrooms</p>
               <Select
                 styles={customStyles}
-                className="select"
+                className="md:w-28 md:h-10"
                 options={options}
                 isSearchable={false}
                 value={sortBed}
@@ -179,12 +179,12 @@ const Sidebar = ({ children }) => {
                 isOptionDisabled={(option) => option.isDisabled}
               />
             </div>
-            <div className="bathroom">
-              <p>Bathrooms</p>
+            <div className="md:flex md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
+              <p className="md:text-lightSilver">Bathrooms</p>
               <Select
                 isSearchable={false}
                 styles={customStyles}
-                className="select"
+                className="md:w-28 md:h-10"
                 options={options}
                 value={sortBath}
                 onChange={sortBathHandler}
@@ -193,12 +193,12 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className="price">
-            <p>Price Range</p>
+          <div className="md:flex md:flex-col md:justify-center md:items-start md:mt-2 md:ml-2 md:pr-2">
+            <p className="md:text-lightSilver">Price Range</p>
             <Select
               isSearchable={false}
               styles={customStyles}
-              className="price-select"
+              className="md:w-60 md:h-10"
               options={priceOptions}
               value={sortPrice}
               onChange={sortPriceHandler}
@@ -206,11 +206,11 @@ const Sidebar = ({ children }) => {
             />
           </div>
 
-          <div className="hr"></div>
+          <div className="md:w-full md:bg-darkGray md:h-px md:mt-5"></div>
 
-          <div className="property">
-            <p>Property Type</p>
-            <div>
+          <div className="md:flex md:flex-col md:content-around md:items-start md:ml-6 md:mt-2">
+            <p className="md:text-lightSilver">Property Type</p>
+            <div className="md:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -218,9 +218,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value=""
               />
-              <label htmlFor="All"> All</label>
+              <label className="md:ml-4 cursor-pointer" htmlFor="All">
+                All
+              </label>
             </div>
-            <div>
+            <div className="md:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -228,9 +230,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="House"
               />
-              <label htmlFor="House"> House</label>
+              <label className="md:ml-2 cursor-pointer" htmlFor="House">
+                House
+              </label>
             </div>
-            <div>
+            <div className="md:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -238,9 +242,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="Apartment"
               />
-              <label htmlFor="vehicle2"> Apartment</label>
+              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle2">
+                Apartment
+              </label>
             </div>
-            <div>
+            <div className="md:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -248,9 +254,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="Loft"
               />
-              <label htmlFor="vehicle3"> Loft</label>
+              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle3">
+                Loft
+              </label>
             </div>
-            <div>
+            <div className="md:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -258,16 +266,18 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="TownHouse"
               />
-              <label htmlFor="vehicle4"> TownHouse</label>
+              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle4">
+                TownHouse
+              </label>
             </div>
           </div>
 
-          <div className="hr"></div>
+          <div className="md:w-full md:bg-darkGray md:h-px md:mt-5"></div>
 
-          <div className="amenities">
-            <p>Amenities</p>
-            <form action="">
-              <label className="form-control">
+          <div className="md:flex md:flex-col md:justify-around md:items-start md:ml-6 md:mt-2">
+            <p className="md:text-lightSilver">Amenities</p>
+            <form className="md:flex md:flex-col md:justify-between" action="">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   onChange={(e) => amenitiesHandler(e)}
                   value="Balcony"
@@ -277,8 +287,9 @@ const Sidebar = ({ children }) => {
                 Balcony
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
+                  className="md:mr-5"
                   onChange={(e) => amenitiesHandler(e)}
                   value="AirConditioning"
                   type="checkbox"
@@ -287,7 +298,7 @@ const Sidebar = ({ children }) => {
                 Air Conditioning
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   value="Pool"
                   onChange={(e) => amenitiesHandler(e)}
@@ -297,7 +308,7 @@ const Sidebar = ({ children }) => {
                 Pool
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   value="Beach"
                   onChange={(e) => amenitiesHandler(e)}
@@ -307,7 +318,7 @@ const Sidebar = ({ children }) => {
                 Beach
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   value="PetFriendly"
                   onChange={(e) => amenitiesHandler(e)}
@@ -317,7 +328,7 @@ const Sidebar = ({ children }) => {
                 Pet friendly
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   value="KidFriendly"
                   onChange={(e) => amenitiesHandler(e)}
@@ -327,7 +338,7 @@ const Sidebar = ({ children }) => {
                 Kid friendly
               </label>
 
-              <label className="form-control">
+              <label className="md:flex md:flex-row md:items-center md:my-2 md:text-white md:font-graphik md:cursor-pointer">
                 <input
                   value="Parking"
                   onChange={(e) => amenitiesHandler(e)}
@@ -339,8 +350,10 @@ const Sidebar = ({ children }) => {
             </form>
           </div>
 
-          <div className="update-result">
-            <button className="update-btn">Update Result</button>
+          <div className="md:w-full md:h-20 md:bg-darkGray md:flex md:justify-center md:items-center">
+            <button className="md:bg-purple md:text-white md:font-graphik md:rounded-xl md:cursor-pointer md:py-2.5 md:px-10 md:font-bold">
+              Update Result
+            </button>
           </div>
         </div>
       </div>

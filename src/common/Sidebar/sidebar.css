@@ -1,76 +1,5 @@
 @media (min-width: 768px) {
-  .bedroom,
-  .bathroom {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin-top: 10px;
-    color: #fff;
-  }
-
-  .bedroom p,
-  .bathroom p,
-  .price p,
-  .property p,
-  .amenities p {
-    color: #a0aec0;
-  }
-
-  .select {
-    width: 7rem;
-    height: 40px;
-  }
-
-  .price {
-    position: inherit;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-top: 10px;
-    margin-left: 20px;
-    padding-right: 20px;
-  }
-
-  .price-select {
-    width: 16rem;
-    height: 40px;
-  }
-
-  .hr {
-    width: 100%;
-    height: 1px;
-    background: #1a202c;
-    margin-top: 20px;
-  }
-
-  .property {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-left: 25px;
-    margin-top: 8px;
-  }
-
-  .property div {
-    margin-top: 12px;
-    color: #fff;
-    font-family: 'Graphik';
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .property div label {
-    margin-left: 1rem;
-    cursor: pointer;
-  }
-
   /* radio styles */
-
   input[type='radio']:not(checked) {
     background-color: #1a202c;
     border-radius: 10px;
@@ -106,40 +35,11 @@
 
   /* amenities */
 
-  .amenities {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-left: 25px;
-    margin-top: 8px;
-  }
-
-  .amenities form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .amenities form label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin: 8px 0;
-    color: #fff;
-    font-family: 'Graphik';
-    cursor: pointer;
-  }
-
-  .amenities label input {
-    margin-right: 20px;
-  }
-
   input[type='checkbox'] {
     -webkit-appearance: none;
     appearance: none;
     background-color: #1a202c;
-    margin: 0;
+    margin-right: 20px;
     font: inherit;
     color: #1a202c;
     width: 1.35em;
@@ -179,24 +79,5 @@
 
     color: var(--form-control-disabled);
     cursor: not-allowed;
-  }
-
-  .update-result {
-    width: 100%;
-    height: 5rem;
-    background-color: #1a202c;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .update-btn {
-    background-color: #667eea;
-    color: #fff;
-    font-family: 'Graphik';
-    font-weight: 700;
-    border-radius: 10px;
-    padding: 10px 80px;
-    cursor: pointer;
   }
 }
