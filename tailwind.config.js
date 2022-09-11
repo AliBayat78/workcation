@@ -14,6 +14,7 @@ module.exports = {
       purple: '#667eea',
       cyan: '#b2f5ea',
       darkCyan: '#285e61',
+      mainBg: '#edf2f7',
     },
     fontFamily: {
       sans: ['ui-sans-serif', 'system-ui'],
