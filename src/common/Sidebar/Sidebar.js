@@ -150,7 +150,7 @@ const Sidebar = ({ children }) => {
 
   return (
     <>
-      <div className="hidden md:flex md:flex-col md:w-1/3 md:h-full 2xl:w-1/5 md:bg-lightGray">
+      <div className="hidden md:flex md:flex-col md:w-1/3 md:h-screen xl:h-auto 2xl:w-1/5 md:bg-lightGray">
         <div className="md:flex md:justify-center md:items-center md:w-full md:h-16 md:text-white md:bg-darkGray">
           <IconContext.Provider value={{ className: 'md:text-purple  md:w-16 md:h-16' }}>
             <div>
@@ -167,11 +167,11 @@ const Sidebar = ({ children }) => {
         </div>
         <div>
           <div className="md:flex md:flex-row md:justify-around">
-            <div className="md:flex md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
+            <div className="md:flex lg:w-2/5 md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
               <p className="md:text-lightSilver">Bedrooms</p>
               <Select
                 styles={customStyles}
-                className="md:w-28 md:h-10"
+                className="md:w-28 md:h-10 lg:w-full"
                 options={options}
                 isSearchable={false}
                 value={sortBed}
@@ -179,12 +179,12 @@ const Sidebar = ({ children }) => {
                 isOptionDisabled={(option) => option.isDisabled}
               />
             </div>
-            <div className="md:flex md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
+            <div className="md:flex lg:w-2/5 md:flex-col md:justify-start md:items-start md:mt-2 md:text-white">
               <p className="md:text-lightSilver">Bathrooms</p>
               <Select
                 isSearchable={false}
                 styles={customStyles}
-                className="md:w-28 md:h-10"
+                className="md:w-28 md:h-10 lg:w-full"
                 options={options}
                 value={sortBath}
                 onChange={sortBathHandler}
@@ -193,12 +193,12 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className="md:flex md:flex-col md:justify-center md:items-start md:mt-2 md:ml-2 md:pr-2">
-            <p className="md:text-lightSilver">Price Range</p>
+          <div className="md:flex md:flex-col md:text-center md:justify-center md:items-start md:mt-2 md:ml-2 lg:ml-4 md:pr-2">
+            <p className="md:text-lightSilver text-left">Price Range</p>
             <Select
               isSearchable={false}
               styles={customStyles}
-              className="md:w-60 md:h-10"
+              className="md:w-60 md:h-10 lg:w-full"
               options={priceOptions}
               value={sortPrice}
               onChange={sortPriceHandler}
@@ -349,7 +349,6 @@ const Sidebar = ({ children }) => {
               </label>
             </form>
           </div>
-
           <div className="md:w-full md:h-20 md:bg-darkGray md:flex md:justify-center md:items-center">
             <button className="md:bg-purple md:text-white md:font-graphik md:rounded-xl md:cursor-pointer md:py-2.5 md:px-10 md:font-bold">
               Update Result
