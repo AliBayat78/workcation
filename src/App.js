@@ -1,11 +1,16 @@
 import './App.css'
 import HouseProvider from './context/HouseProvider'
-import HomePage from './pages/Home'
+import routes from './routes'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
     <HouseProvider>
-      <HomePage />
+      <Routes>
+        {routes.map((route) => {
+          return <Route key={route.path} path={route.path} element={<route.component />} />
+        })}
+      </Routes>
     </HouseProvider>
   )
 }

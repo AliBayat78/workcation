@@ -3,6 +3,7 @@ import { BsSearch } from 'react-icons/bs'
 import { IconContext } from 'react-icons'
 import { useRef, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) => {
   const dispatch = useHouseActions()
@@ -46,18 +47,36 @@ const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) =
       </div>
       <div className="md:flex xl:w-full md:flex-row md:justify-end md:items-center md:mr-8">
         <ul className="md:w-80 xl:w-3/5 2xl:mr-0 md:flex md:flex-row md:justify-around md:font-graphik md:text-xs lg:text-sm xl:text-base 2xl:text-lg md:text-darkGray">
-          <li className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white">
+          <Link
+            to="/Properties"
+            className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white"
+          >
             List Your Property
-          </li>
-          <li className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white">
+          </Link>
+          <Link
+            to="/Trips"
+            className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white"
+          >
             Trips
-          </li>
-          <li className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white">
+          </Link>
+          <Link
+            to="/Messages"
+            className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white"
+          >
             Messages
-          </li>
-          <li className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white">
+          </Link>
+          <Link
+            to="/Support"
+            className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white"
+          >
             Support
-          </li>
+          </Link>
+          <Link
+            to="/"
+            className="md:bg-white md:p-2 md:rounded-md md:cursor-pointer md:hover:bg-purple md:hover:text-white"
+          >
+            Home
+          </Link>
         </ul>
         <img
           className="md:w-10 md:h-10 xl:w-12 xl:h-12 2xl:w-14 2xl:h-14 md:rounded-full"
