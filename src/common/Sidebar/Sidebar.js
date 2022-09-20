@@ -350,7 +350,7 @@ const Sidebar = ({ children }) => {
             </form>
           </div>
           <div className="md:relative xl:-bottom-36 md:w-full md:h-20 md:flex md:justify-center md:items-center">
-            <button className="md:bg-purple md:fixed md:bottom-4 md:text-white md:text-xs xl:text-lg md:font-graphik md:rounded-xl md:cursor-pointer md:py-2.5 md:px-10 md:font-bold">
+            <button className="md:bg-purple md:hover:bg-darkPurple md:fixed md:bottom-4 md:text-white md:text-xs xl:text-lg md:font-graphik md:rounded-xl md:cursor-pointer md:py-2.5 md:px-10 md:font-bold">
               Update Result
             </button>
           </div>
