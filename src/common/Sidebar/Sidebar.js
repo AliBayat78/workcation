@@ -6,6 +6,7 @@ import Select from 'react-select'
 import { useEffect, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
 import Navbar from '../Navbar/Navbar'
+import swal from 'sweetalert'
 
 // Bed and Bath options
 const options = [
@@ -79,11 +80,13 @@ const Sidebar = ({ children }) => {
   const sortBedHandler = (selectedOption) => {
     dispatch({ type: 'sortBed', selectedOption })
     setSortBed({ ...selectedOption, isDisabled: true })
+    swal('Updated!', 'Products Has Been Sorted by Bed Numbers', 'success')
   }
 
   const sortBathHandler = (selectedOption) => {
     dispatch({ type: 'sortBath', selectedOption })
     setSortBath({ ...selectedOption, isDisabled: true })
+    swal('Updated!', 'Products Has Been Sorted by Bath Numbers', 'success')
   }
 
   // Sorting Based on Price
@@ -95,6 +98,7 @@ const Sidebar = ({ children }) => {
     if (selectedOption.value === '') {
       return dispatch({ type: 'sortProperty', selectedOption: sortProperty })
     }
+    swal('Updated!', 'Products Has Been Sorted by Prices', 'success')
   }
 
   // Sorting Based on Property Type
@@ -363,6 +367,7 @@ const Sidebar = ({ children }) => {
           sortBath={sortBath}
           sortBed={sortBed}
           sortPrice={sortPrice}
+          disableSearch={false}
         />
         {children}
       </main>

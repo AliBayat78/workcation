@@ -3,7 +3,7 @@ import Navbar from '../common/Navbar/Navbar'
 const Trips = () => {
   return (
     <>
-      <Navbar />
+      <Navbar disableSearch={true} />
       <h1 className="flex w-full justify-center items-center mt-10">
         Trips Page: Not Developed Yet
       </h1>

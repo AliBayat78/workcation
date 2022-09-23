@@ -5,7 +5,7 @@ import { useRef, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
 import { Link } from 'react-router-dom'
 
-const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) => {
+const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath, disableSearch }) => {
   const dispatch = useHouseActions()
 
   const [inputText, setInputText] = useState('')
@@ -43,6 +43,7 @@ const Navbar = ({ sortAmenities, sortPrice, sortProperty, sortBed, sortBath }) =
           ref={inputRef}
           className="md:box-border md:bg-mainBg md:rounded-lg md:p-0.5 md:border-0 md:min-w-40 lg:w-60 xl:w-80 2xl:w-96  md:h-10 md:outline-none md:placeholder:text-silver md:placeholder:pl-8 md:placeholder:font-light md:placeholder:text-sm 2xl:placeholder:text-lg"
           placeholder="Search by Keywords"
+          disabled={disableSearch}
         />
       </div>
       <div className="md:flex xl:w-full md:flex-row md:justify-end md:items-center md:mr-8">

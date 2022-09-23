@@ -1,0 +1,10 @@
+.img-skeleton {
+  border-radius: 8px;
+  margin-top: 3rem;
+}
+
+.information-skeleton {
+  border-radius: 8px;
+  position: relative;
+  top: -7rem;
+}
