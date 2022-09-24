@@ -161,29 +161,37 @@ const Sidebar = ({ children }) => {
   }, [sortAmenities, sortBed, sortBath])
 
   return (
-    <>
-      <div className="hidden md:relative md:flex md:flex-col md:w-1/3 md:h-screen 2xl:w-1/5 md:bg-lightGray">
-        <div className="md:flex md:justify-center md:items-center md:w-full md:h-16 md:text-white md:bg-darkGray">
-          <IconContext.Provider value={{ className: 'md:text-purple  md:w-16 md:h-16' }}>
-            <div>
-              <MdHouseboat />
-            </div>
-          </IconContext.Provider>
-          <IconContext.Provider value={{ className: 'md:w-8 md:h-8' }}>
-            <div>
-              <GiPalmTree />
-            </div>
-          </IconContext.Provider>
-          <h2 className="md:font-graphik md:font-black md:text-2xl">Work </h2>
-          <h2 className="md:font-graphik md:text-2xl md:text-purple">cation</h2>
+    <div className="flex flex-col w-full overflow-y-auto md:overflow-y-hidden md:flex-row">
+      <div className="relative flex flex-col md:w-1/3 md:h-screen 2xl:w-1/5 bg-lightGray">
+        <div className="flex flex-row justify-between items-center w-full bg-darkGray">
+          <div className="flex justify-start md:justify-center items-center md:h-16 text-white bg-darkGray">
+            <IconContext.Provider value={{ className: 'text-purple  w-16 h-16' }}>
+              <div>
+                <MdHouseboat />
+              </div>
+            </IconContext.Provider>
+            <IconContext.Provider value={{ className: 'w-8 h-8' }}>
+              <div>
+                <GiPalmTree />
+              </div>
+            </IconContext.Provider>
+            <h2 className="font-graphik font-black text-2xl">Work </h2>
+            <h2 className="font-graphik text-2xl text-purple">cation</h2>
+          </div>
+          <div className="space-y-1.5 mr-4 md:hidden">
+            <span className="block w-8 h-1 bg-silver"></span>
+            <span className="block w-8 h-1 bg-silver"></span>
+            <span className="block w-8 h-1 bg-silver"></span>
+          </div>
         </div>
-        <div className="md:relative md:w-full">
-          <div className="md:flex md:flex-row md:justify-around">
-            <div className="md:flex lg:w-2/5 md:flex-col md:justify-start md:items-start md:mt-2 xl:mt-2 lg:mt-1 md:text-white">
-              <p className="md:text-lightSilver md:text-xs xl:text-sm">Bedrooms</p>
+
+        <div className="relative w-full">
+          <div className="flex flex-row justify-around">
+            <div className="flex lg:w-2/5 flex-col justify-start items-start mt-2 xl:mt-2 lg:mt-1 text-white">
+              <p className="text-lightSilver md:text-xs xl:text-sm">Bedrooms</p>
               <Select
                 styles={customStyles}
-                className="md:w-28 md:h-8 xl:h-10 lg:w-full"
+                className="w-40 md:w-28 h-8 xl:h-10 lg:w-full"
                 options={options}
                 isSearchable={false}
                 value={sortBed}
@@ -191,12 +199,12 @@ const Sidebar = ({ children }) => {
                 isOptionDisabled={(option) => option.isDisabled}
               />
             </div>
-            <div className="md:flex lg:w-2/5 md:flex-col md:justify-start md:items-start md:mt-2 xl:mt-2 lg:mt-1 md:text-white">
-              <p className="md:text-lightSilver md:text-xs xl:text-sm">Bathrooms</p>
+            <div className="flex lg:w-2/5 flex-col justify-start items-start mt-2 xl:mt-2 lg:mt-1 text-white">
+              <p className="text-lightSilver md:text-xs xl:text-sm">Bathrooms</p>
               <Select
                 isSearchable={false}
                 styles={customStyles}
-                className="md:w-28 md:h-8 xl:h-10 lg:w-full"
+                className="w-40 md:w-28 h-8 xl:h-10 lg:w-full"
                 options={options}
                 value={sortBath}
                 onChange={sortBathHandler}
@@ -205,12 +213,12 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className="md:flex md:flex-col md:text-center md:justify-center md:items-start md:mt-2 lg:mt-1 xl:mt-2 md:ml-2 lg:ml-4 md:pr-2">
-            <p className="md:text-lightSilver text-left md:text-xs xl:text-sm">Price Range</p>
+          <div className="flex flex-col text-center justify-center items-center md:items-start mt-2 lg:mt-1 xl:mt-2 ml-2 lg:ml-4 pr-2">
+            <p className="text-lightSilver text-left md:text-xs xl:text-sm">Price Range</p>
             <Select
               isSearchable={false}
               styles={customStyles}
-              className="md:w-60 md:h-8 xl:h-12 lg:w-full"
+              className="w-96 md:w-60 md:h-8 xl:h-12 lg:w-full"
               options={priceOptions}
               value={sortPrice}
               onChange={sortPriceHandler}
@@ -218,11 +226,11 @@ const Sidebar = ({ children }) => {
             />
           </div>
 
-          <div className="md:w-full md:bg-darkGray md:h-px md:mt-5 lg:mt-3 xl:mt-2"></div>
+          <div className="w-full bg-darkGray h-px mt-5 lg:mt-3 xl:mt-2"></div>
 
-          <div className="md:flex md:flex-col md:content-around md:text-xs xl:text-sm md:items-start md:ml-6 md:mt-2 lg:mt-1">
-            <p className="md:text-lightSilver">Property Type</p>
-            <div className="md:mt-3 lg:mt-2 xl:mt-3 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
+          <div className="flex flex-col content-around md:text-xs xl:text-sm items-start ml-6 mt-2 lg:mt-1">
+            <p className="text-lightSilver">Property Type</p>
+            <div className="mt-3 lg:mt-2 xl:mt-3 text-white font-graphik flex flex-row justify-center items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -230,11 +238,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value=""
               />
-              <label className="md:ml-4 cursor-pointer" htmlFor="All">
+              <label className="ml-4 cursor-pointer" htmlFor="All">
                 All
               </label>
             </div>
-            <div className="md:mt-3 lg:mt-2 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
+            <div className="mt-3 lg:mt-2 text-white font-graphik flex flex-row justify-center items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -242,11 +250,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="House"
               />
-              <label className="md:ml-2 cursor-pointer" htmlFor="House">
+              <label className="ml-2 cursor-pointer" htmlFor="House">
                 House
               </label>
             </div>
-            <div className="md:mt-3 lg:mt-2 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
+            <div className="mt-3 lg:mt-2 text-white font-graphik flex flex-row justify-center items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -254,11 +262,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="Apartment"
               />
-              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle2">
+              <label className="ml-2 cursor-pointer" htmlFor="vehicle2">
                 Apartment
               </label>
             </div>
-            <div className="md:mt-3 lg:mt-2 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
+            <div className="mt-3 lg:mt-2 text-white font-graphik flex flex-row justify-center items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -266,11 +274,11 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="Loft"
               />
-              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle3">
+              <label className="ml-2 cursor-pointer" htmlFor="vehicle3">
                 Loft
               </label>
             </div>
-            <div className="md:mt-3 lg:mt-2 md:text-white md:font-graphik md:flex md:flex-row md:justify-center md:items-center">
+            <div className="mt-3 lg:mt-2 text-white font-graphik flex flex-row justify-center items-center">
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
@@ -278,18 +286,18 @@ const Sidebar = ({ children }) => {
                 name="property"
                 value="TownHouse"
               />
-              <label className="md:ml-2 cursor-pointer" htmlFor="vehicle4">
+              <label className="ml-2 cursor-pointer" htmlFor="vehicle4">
                 TownHouse
               </label>
             </div>
           </div>
 
-          <div className="md:w-full md:bg-darkGray md:h-px md:mt-5 lg:mt-2 xl:mt-3"></div>
+          <div className="w-full bg-darkGray h-px mt-5 lg:mt-2 xl:mt-3"></div>
 
-          <div className="md:flex md:flex-col md:justify-around md:items-start md:ml-6 md:mt-2 lg:text-xs xl:text-sm lg:mt-1">
-            <p className="md:text-lightSilver">Amenities</p>
-            <form className="md:flex md:flex-col md:justify-between" action="">
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+          <div className="flex flex-col justify-around items-start ml-6 mt-2 lg:text-xs xl:text-sm lg:mt-1">
+            <p className="text-lightSilver">Amenities</p>
+            <form className="flex flex-col justify-between">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   onChange={(e) => amenitiesHandler(e)}
                   value="Balcony"
@@ -299,9 +307,9 @@ const Sidebar = ({ children }) => {
                 Balcony
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
-                  className="md:mr-5"
+                  className="mr-5"
                   onChange={(e) => amenitiesHandler(e)}
                   value="AirConditioning"
                   type="checkbox"
@@ -310,7 +318,7 @@ const Sidebar = ({ children }) => {
                 Air Conditioning
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   value="Pool"
                   onChange={(e) => amenitiesHandler(e)}
@@ -320,7 +328,7 @@ const Sidebar = ({ children }) => {
                 Pool
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   value="Beach"
                   onChange={(e) => amenitiesHandler(e)}
@@ -330,7 +338,7 @@ const Sidebar = ({ children }) => {
                 Beach
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   value="PetFriendly"
                   onChange={(e) => amenitiesHandler(e)}
@@ -340,7 +348,7 @@ const Sidebar = ({ children }) => {
                 Pet friendly
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   value="KidFriendly"
                   onChange={(e) => amenitiesHandler(e)}
@@ -350,7 +358,7 @@ const Sidebar = ({ children }) => {
                 Kid friendly
               </label>
 
-              <label className="md:flex md:flex-row md:items-center md:my-2 lg:my-1 xl:my-2 md:text-white md:font-graphik md:cursor-pointer">
+              <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
                 <input
                   value="Parking"
                   onChange={(e) => amenitiesHandler(e)}
@@ -361,10 +369,10 @@ const Sidebar = ({ children }) => {
               </label>
             </form>
           </div>
-          <div className="md:relative xl:-bottom-36 md:w-full md:h-20 md:flex md:justify-center md:items-center">
+          <div className="relative xl:-bottom-36 w-full h-20 flex justify-center items-center">
             <button
               onClick={() => onUpdate()}
-              className="md:bg-purple md:hover:bg-darkPurple md:fixed md:bottom-4 md:text-white md:text-xs xl:text-lg md:font-graphik md:rounded-xl md:cursor-pointer md:py-2.5 md:px-10 md:font-bold"
+              className="bg-purple hover:bg-darkPurple md:fixed md:bottom-4 text-white md:text-xs xl:text-lg font-graphik rounded-xl cursor-pointer py-2.5 px-10 font-bold"
             >
               Update Result
             </button>
@@ -382,7 +390,7 @@ const Sidebar = ({ children }) => {
         />
         {children}
       </main>
-    </>
+    </div>
   )
 }
 
