@@ -99,7 +99,6 @@ const Sidebar = ({ children }) => {
 
   // Sorting Based on Price
   const sortPriceHandler = (selectedOption) => {
-    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
     dispatch({ type: 'sortPrice', selectedOption })
 
     setSortPrice({ ...selectedOption, isDisabled: true })
@@ -144,12 +143,17 @@ const Sidebar = ({ children }) => {
     setSortPrice(priceOptions[0])
   }, [])
 
-  // changing price state => check the amenity option
+  // changing price & property state => check the selected bed, bath & amenity
   useEffect(() => {
     dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
     dispatch({ type: 'sortBed', selectedOption: sortBed })
     dispatch({ type: 'sortBath', selectedOption: sortBath })
   }, [sortPrice, sortProperty])
+
+  // change price state => check the selected property
+  useEffect(() => {
+    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
+  }, [sortPrice])
 
   // changing amenity state => check and perform other filters
   useEffect(() => {
