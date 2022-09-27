@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
 import Navbar from '../Navbar/Navbar'
 import swal from 'sweetalert'
+import { Slide } from 'react-awesome-reveal'
+import { BsSearch } from 'react-icons/bs'
 
 // Bed and Bath options
 const options = [
@@ -68,6 +70,9 @@ const onUpdate = () => {
 
 const Sidebar = ({ children }) => {
   const dispatch = useHouseActions()
+
+  const [inputText, setInputText] = useState('')
+  const [mobileFilters, setMobileFilters] = useState(true)
 
   const [sortBed, setSortBed] = useState('')
   const [sortBath, setSortBath] = useState('')
@@ -190,7 +195,26 @@ const Sidebar = ({ children }) => {
         </div>
 
         <div className="relative w-full">
-          <div className="flex flex-row justify-around">
+          <div className="relative w-full flex flex-row justify-around items-center bg-lightGray h-10 md:hidden">
+            <div className="mt-4 ">Searchbar</div>
+            <button
+              onClick={() => setMobileFilters((prevState) => !prevState)}
+              className="flex flex-row bg-silver w-28 h-10 rounded-lg mt-4 justify-center items-center"
+            >
+              <div className="space-y-1.5 flex flex-col items-center mr-4 md:hidden">
+                <span className="block w-8 h-1 bg-lightSilver"></span>
+                <span className="block w-6 h-1 bg-lightSilver"></span>
+                <span className="block w-4 h-1 bg-lightSilver"></span>
+              </div>
+              <p className="text-white">Filters</p>
+            </button>
+          </div>
+          <div className="w-full bg-darkGray h-px mt-5 md:hidden"></div>
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 flex flex-row justify-around`}
+          >
             <div className="flex lg:w-2/5 flex-col justify-start items-start mt-2 xl:mt-2 lg:mt-1 text-white">
               <p className="text-lightSilver md:text-xs xl:text-sm">Bedrooms</p>
               <Select
@@ -217,7 +241,11 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className="flex flex-col text-center justify-center items-center md:items-start mt-2 lg:mt-1 xl:mt-2 ml-2 lg:ml-4 pr-2">
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 flex flex-col text-center justify-center items-center md:items-start mt-2 lg:mt-1 xl:mt-2 ml-2 lg:ml-4 pr-2`}
+          >
             <p className="text-lightSilver text-left md:text-xs xl:text-sm">Price Range</p>
             <Select
               isSearchable={false}
@@ -230,9 +258,17 @@ const Sidebar = ({ children }) => {
             />
           </div>
 
-          <div className="w-full bg-darkGray h-px mt-5 lg:mt-3 xl:mt-2"></div>
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 w-full bg-darkGray h-px mt-5 lg:mt-2 xl:mt-3`}
+          ></div>
 
-          <div className="flex flex-col content-around md:text-xs xl:text-sm items-start ml-6 mt-2 lg:mt-1">
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 flex flex-col content-around md:text-xs xl:text-sm items-start ml-6 mt-2 lg:mt-1`}
+          >
             <p className="text-lightSilver">Property Type</p>
             <div className="mt-3 lg:mt-2 xl:mt-3 text-white font-graphik flex flex-row justify-center items-center">
               <input
@@ -296,9 +332,17 @@ const Sidebar = ({ children }) => {
             </div>
           </div>
 
-          <div className="w-full bg-darkGray h-px mt-5 lg:mt-2 xl:mt-3"></div>
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 w-full bg-darkGray h-px mt-5 lg:mt-2 xl:mt-3`}
+          ></div>
 
-          <div className="flex flex-col justify-around items-start ml-6 mt-2 lg:text-xs xl:text-sm lg:mt-1">
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 flex flex-col justify-around items-start ml-6 mt-2 lg:text-xs xl:text-sm lg:mt-1`}
+          >
             <p className="text-lightSilver">Amenities</p>
             <form className="flex flex-col justify-between">
               <label className="flex flex-row items-center my-2 lg:my-1 xl:my-2 text-white font-graphik cursor-pointer">
@@ -373,7 +417,11 @@ const Sidebar = ({ children }) => {
               </label>
             </form>
           </div>
-          <div className="relative xl:-bottom-36 w-full h-20 flex justify-center items-center">
+          <div
+            className={`${
+              mobileFilters ? 'visible' : 'hidden'
+            } ease-in-out duration-300 relative xl:-bottom-36 w-full h-20 flex justify-center items-center`}
+          >
             <button
               onClick={() => onUpdate()}
               className="bg-purple hover:bg-darkPurple md:fixed md:bottom-4 text-white md:text-xs xl:text-lg font-graphik rounded-xl cursor-pointer py-2.5 px-10 font-bold"
