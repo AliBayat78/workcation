@@ -1,5 +1,5 @@
 import Sidebar from '../common/Sidebar/Sidebar'
-import MainComp from '../common/Main/Main'
+import MainComp from '../components/Main/Main'
 
 const HomePage = () => {
   return (

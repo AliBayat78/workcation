@@ -1,4 +1,4 @@
-import Plus from '../Plus/Plus'
+import Plus from '../../common/Plus/Plus'
 import ReactStars from 'react-rating-stars-component'
 
 const HouseComp = ({ image, title, price, features, plus, type, stars }) => {

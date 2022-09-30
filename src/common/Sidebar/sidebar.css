@@ -19,9 +19,9 @@ input[type='radio']:after {
   content: '';
   display: block;
   height: 0.6rem;
-  left: 7px;
+  left: 5px;
   position: relative;
-  top: 7px;
+  top: 5px;
   width: 0.6rem;
 }
 input[type='radio']:checked:after {
@@ -89,5 +89,17 @@ input[type='checkbox']:disabled {
   input[type='checkbox'] {
     width: 1.65em;
     height: 1.65em;
+  }
+
+  input[type='radio']:after {
+    background-color: #1a202c;
+    border-radius: 25px;
+    content: '';
+    display: block;
+    height: 0.68rem;
+    left: 7.5px;
+    position: relative;
+    top: 7.5px;
+    width: 0.6rem;
   }
 }

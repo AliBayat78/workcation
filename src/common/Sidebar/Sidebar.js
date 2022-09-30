@@ -7,8 +7,7 @@ import { useEffect, useState } from 'react'
 import { useHouseActions } from '../../context/HouseProvider'
 import Navbar from '../Navbar/Navbar'
 import swal from 'sweetalert'
-import { Slide } from 'react-awesome-reveal'
-import { BsSearch } from 'react-icons/bs'
+import Searchbar from '../Searchbar/Searchbar'
 
 // Bed and Bath options
 const options = [
@@ -71,7 +70,6 @@ const onUpdate = () => {
 const Sidebar = ({ children }) => {
   const dispatch = useHouseActions()
 
-  const [inputText, setInputText] = useState('')
   const [mobileFilters, setMobileFilters] = useState(true)
 
   const [sortBed, setSortBed] = useState('')
@@ -143,6 +141,19 @@ const Sidebar = ({ children }) => {
     }
   }
 
+  // for search bar
+  const [inputText, setInputText] = useState('')
+
+  const changeHandler = (e) => {
+    dispatch({ type: 'sortPrice', selectedOption: sortPrice })
+    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
+    dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
+    dispatch({ type: 'sortBed', selectedOption: sortBed })
+    dispatch({ type: 'sortBath', selectedOption: sortBath })
+    dispatch({ type: 'search', selectedOption: e.target.value })
+    setInputText(e.target.value)
+  }
+
   // Mounting DOM -> set Price Sort on All
   useEffect(() => {
     setSortPrice(priceOptions[0])
@@ -196,15 +207,17 @@ const Sidebar = ({ children }) => {
 
         <div className="relative w-full">
           <div className="relative w-full flex flex-row justify-around items-center bg-lightGray h-10 md:hidden">
-            <div className="mt-4 ">Searchbar</div>
+            <div className="mt-4">
+              <Searchbar onChange={(e) => changeHandler(e)} disabled={false} value={inputText} />
+            </div>
             <button
               onClick={() => setMobileFilters((prevState) => !prevState)}
-              className="flex flex-row bg-silver w-28 h-10 rounded-lg mt-4 justify-center items-center"
+              className={`${mobileFilters ? 'bg-silver' : 'bg-darkGray'} flex flex-row  w-28 h-10 rounded-lg mt-4 justify-center items-center`}
             >
-              <div className="space-y-1.5 flex flex-col items-center mr-4 md:hidden">
-                <span className="block w-8 h-1 bg-lightSilver"></span>
-                <span className="block w-6 h-1 bg-lightSilver"></span>
-                <span className="block w-4 h-1 bg-lightSilver"></span>
+              <div className="space-y-1 flex flex-col items-center mr-4 md:hidden">
+                <span className="block w-6 h-0.5 bg-lightSilver"></span>
+                <span className="block w-4 h-0.5 bg-lightSilver"></span>
+                <span className="block w-2.5 h-0.5 bg-lightSilver"></span>
               </div>
               <p className="text-white">Filters</p>
             </button>
@@ -298,7 +311,7 @@ const Sidebar = ({ children }) => {
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
-                id="vehicle2"
+                id="Apartment"
                 name="property"
                 value="Apartment"
               />
@@ -310,7 +323,7 @@ const Sidebar = ({ children }) => {
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
-                id="vehicle3"
+                id="Loft"
                 name="property"
                 value="Loft"
               />
@@ -322,7 +335,7 @@ const Sidebar = ({ children }) => {
               <input
                 onChange={(e) => propertyHandler(e)}
                 type="radio"
-                id="vehicle4"
+                id="TownHouse"
                 name="property"
                 value="TownHouse"
               />
