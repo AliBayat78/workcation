@@ -8,6 +8,7 @@ import { useHouseActions } from '../../context/HouseProvider'
 import Navbar from '../Navbar/Navbar'
 import swal from 'sweetalert'
 import Searchbar from '../Searchbar/Searchbar'
+import useWindowDimensions from '../../hooks/useWindowDimensions'
 
 // Bed and Bath options
 const options = [
@@ -69,6 +70,7 @@ const onUpdate = () => {
 
 const Sidebar = ({ children }) => {
   const dispatch = useHouseActions()
+  const { width } = useWindowDimensions()
 
   const [mobileFilters, setMobileFilters] = useState(true)
 
@@ -88,6 +90,15 @@ const Sidebar = ({ children }) => {
   ])
   const [sortAmenities, setSortAmenities] = useState('')
 
+  // shows the filters in large widths even if filter button is switched on off in mobile responsive (fixing a bug)
+  useEffect(() => {
+    if (width >= 768) {
+      setMobileFilters(true)
+    } else {
+      setMobileFilters(false)
+    }
+  }, [width])
+
   const sortBedHandler = (selectedOption) => {
     dispatch({ type: 'sortBed', selectedOption })
     setSortBed({ ...selectedOption, isDisabled: true })
@@ -102,6 +113,7 @@ const Sidebar = ({ children }) => {
 
   // Sorting Based on Price
   const sortPriceHandler = (selectedOption) => {
+    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
     dispatch({ type: 'sortPrice', selectedOption })
 
     setSortPrice({ ...selectedOption, isDisabled: true })
@@ -166,11 +178,6 @@ const Sidebar = ({ children }) => {
     dispatch({ type: 'sortBath', selectedOption: sortBath })
   }, [sortPrice, sortProperty])
 
-  // change price state => check the selected property
-  useEffect(() => {
-    dispatch({ type: 'sortProperty', selectedOption: sortProperty })
-  }, [sortPrice])
-
   // changing amenity state => check and perform other filters
   useEffect(() => {
     dispatch({ type: 'sortPrice', selectedOption: sortPrice })
@@ -212,7 +219,9 @@ const Sidebar = ({ children }) => {
             </div>
             <button
               onClick={() => setMobileFilters((prevState) => !prevState)}
-              className={`${mobileFilters ? 'bg-silver' : 'bg-darkGray'} flex flex-row  w-28 h-10 rounded-lg mt-4 justify-center items-center`}
+              className={`${
+                mobileFilters ? 'bg-silver' : 'bg-darkGray'
+              } flex flex-row  w-28 h-10 rounded-lg mt-4 justify-center items-center`}
             >
               <div className="space-y-1 flex flex-col items-center mr-4 md:hidden">
                 <span className="block w-6 h-0.5 bg-lightSilver"></span>
