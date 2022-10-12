@@ -80,6 +80,10 @@ input[type='checkbox']:disabled {
   cursor: not-allowed;
 }
 
+.mobile-navbar {
+  transition: ease-in-out 0.5s all;
+}
+
 @media (min-width: 1280px) {
   input[type='radio']:not(checked) {
     width: 1.65rem;

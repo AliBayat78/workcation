@@ -9,6 +9,8 @@ import Navbar from '../Navbar/Navbar'
 import swal from 'sweetalert'
 import Searchbar from '../Searchbar/Searchbar'
 import useWindowDimensions from '../../hooks/useWindowDimensions'
+import { Link } from 'react-router-dom'
+import Avatar2 from '../../icons/avatar2.jpg'
 
 // Bed and Bath options
 const options = [
@@ -72,6 +74,7 @@ const Sidebar = ({ children }) => {
   const dispatch = useHouseActions()
   const { width } = useWindowDimensions()
 
+  const [navBarFilter, setNavbarFilter] = useState(false)
   const [mobileFilters, setMobileFilters] = useState(true)
 
   const [sortBed, setSortBed] = useState('')
@@ -205,7 +208,12 @@ const Sidebar = ({ children }) => {
             <h2 className="font-graphik font-black text-2xl">Work </h2>
             <h2 className="font-graphik text-2xl text-purple">cation</h2>
           </div>
-          <div className="space-y-1.5 mr-4 md:hidden">
+          <div
+            onClick={() => {
+              setNavbarFilter((prevState) => !prevState)
+            }}
+            className="space-y-1.5 mr-4 md:hidden"
+          >
             <span className="block w-8 h-1 bg-silver"></span>
             <span className="block w-8 h-1 bg-silver"></span>
             <span className="block w-8 h-1 bg-silver"></span>
@@ -213,6 +221,41 @@ const Sidebar = ({ children }) => {
         </div>
 
         <div className="relative w-full">
+          {/* NavBar In Small Devices */}
+          <div
+            className={`${
+              navBarFilter ? 'visible' : 'hidden'
+            } mobile-navbar relative w-full flex flex-col justify-start items-start font-graphik bg-darkGray h-80 md:hidden`}
+          >
+            <Link
+              to="/Properties"
+              className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}
+            >
+              List Your Property
+            </Link>
+            <Link to="/Trips" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+              Trips
+            </Link>
+            <Link to="/Messages" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+              Messages
+            </Link>
+            <div className={`w-full bg-lightGray h-px mt-5`}></div>
+            <div className={`flex flex-row justify-center items-center mt-4 `}>
+              <img className={`w-10 h-10 ml-2 rounded-full`} alt="" src={Avatar2} />
+              <p className={`ml-4 text-white`}>John Wick</p>
+            </div>
+            <Link to="/" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+              Account Settings
+            </Link>
+            <Link to="/Support" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+              Support
+            </Link>
+            <Link to="/" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+              Sign Out
+            </Link>
+          </div>
+
+          {/* Searchbar and filters in Small Devices */}
           <div className="relative w-full flex flex-row justify-around items-center bg-lightGray h-10 md:hidden">
             <div className="mt-4">
               <Searchbar onChange={(e) => changeHandler(e)} disabled={false} value={inputText} />
@@ -232,6 +275,8 @@ const Sidebar = ({ children }) => {
             </button>
           </div>
           <div className="w-full bg-darkGray h-px mt-5 md:hidden"></div>
+
+          {/* Sidebar Options */}
           <div
             className={`${
               mobileFilters ? 'visible' : 'hidden'
