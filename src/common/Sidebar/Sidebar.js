@@ -212,15 +212,21 @@ const Sidebar = ({ children }) => {
             onClick={() => {
               setNavbarFilter((prevState) => !prevState)
             }}
-            className="space-y-1.5 mr-4 md:hidden"
+            className={`bg-darkGray space-y-1.5 mt-5 w-10 h-12 mr-4 md:hidden`}
           >
-            <span className="block w-8 h-1 bg-silver"></span>
-            <span className="block w-8 h-1 bg-silver"></span>
-            <span className="block w-8 h-1 bg-silver"></span>
+            <span
+              className={`${navBarFilter ? 'bg-lightSilver' : 'bg-silver'} block w-8 h-1`}
+            ></span>
+            <span
+              className={`${navBarFilter ? 'bg-lightSilver' : 'bg-silver'} block w-8 h-1`}
+            ></span>
+            <span
+              className={`${navBarFilter ? 'bg-lightSilver' : 'bg-silver'} block w-8 h-1`}
+            ></span>
           </div>
         </div>
 
-        <div className="relative w-full">
+        <div className="relative w-full md:sidebar-responsive">
           {/* NavBar In Small Devices */}
           <div
             className={`${
@@ -244,13 +250,25 @@ const Sidebar = ({ children }) => {
               <img className={`w-10 h-10 ml-2 rounded-full`} alt="" src={Avatar2} />
               <p className={`ml-4 text-white`}>John Wick</p>
             </div>
-            <Link to="/" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+            <Link
+              onClick={() =>
+                swal('Not Developed Yet', 'This Button is just for Decoration', 'warning')
+              }
+              to="/"
+              className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}
+            >
               Account Settings
             </Link>
             <Link to="/Support" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
               Support
             </Link>
-            <Link to="/" className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}>
+            <Link
+              onClick={() =>
+                swal('Not Developed Yet', 'This Button is just for Decoration', 'warning')
+              }
+              to="/"
+              className={`cursor-pointer hover:bg-purple ml-2 mt-3 text-white`}
+            >
               Sign Out
             </Link>
           </div>
@@ -280,7 +298,7 @@ const Sidebar = ({ children }) => {
           <div
             className={`${
               mobileFilters ? 'visible' : 'hidden'
-            } ease-in-out duration-300 flex flex-row justify-around`}
+            } flex flex-row justify-around md:relative`}
           >
             <div className="flex lg:w-2/5 flex-col justify-start items-start mt-2 xl:mt-2 lg:mt-1 text-white">
               <p className="text-lightSilver md:text-xs xl:text-sm">Bedrooms</p>
@@ -491,7 +509,7 @@ const Sidebar = ({ children }) => {
           >
             <button
               onClick={() => onUpdate()}
-              className="bg-purple hover:bg-darkPurple md:fixed md:bottom-4 text-white md:text-xs xl:text-lg font-graphik rounded-xl cursor-pointer py-2.5 px-10 font-bold"
+              className="bg-purple hover:bg-darkPurple button-responsive md:fixed md:bottom-4 text-white md:text-xs xl:text-lg font-graphik rounded-xl cursor-pointer py-2.5 px-10 font-bold"
             >
               Update Result
             </button>

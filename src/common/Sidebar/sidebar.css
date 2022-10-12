@@ -107,3 +107,14 @@ input[type='checkbox']:disabled {
     width: 0.6rem;
   }
 }
+
+@media (max-height: 780px) {
+  .sidebar-responsive {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: 800px !important;
+  }
+  .button-responsive {
+    position: relative !important;
+  }
+}
