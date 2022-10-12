@@ -183,8 +183,8 @@ const Sidebar = ({ children }) => {
 
   // changing amenity state => check and perform other filters
   useEffect(() => {
-    dispatch({ type: 'sortPrice', selectedOption: sortPrice })
     dispatch({ type: 'sortProperty', selectedOption: sortProperty })
+    dispatch({ type: 'sortPrice', selectedOption: sortPrice })
     dispatch({ type: 'sortAmenity', selectedOption: sortAmenities })
     dispatch({ type: 'sortBed', selectedOption: sortBed })
     dispatch({ type: 'sortBath', selectedOption: sortBath })
