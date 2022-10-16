@@ -172,6 +172,8 @@ const Sidebar = ({ children }) => {
   // Mounting DOM -> set Price Sort on All
   useEffect(() => {
     setSortPrice(priceOptions[0])
+    setSortBath(options[0])
+    setSortBed(options[0])
   }, [])
 
   // changing price & property state => check the selected bed, bath & amenity
